@@ -64,3 +64,23 @@ function orderMelons(evt) {
 document.querySelector('#order-form').addEventListener('submit', orderMelons);
 
 
+function getDogPicture(evt) {
+  const url = 'https://dog.ceo/api/breeds/image/random';
+  
+//   {
+//     "message": "https://images.dog.ceo/breeds/terrier-dandie/n02096437_2617.jpg",
+//     "status": "success"
+// }
+
+  fetch(url)
+    // turns the response (json format) from url, 
+    //then uses arrow function to extract the k/v pairs from response 
+    .then(response => response.json())
+    //
+    .then(dogImage => {
+    document.querySelector('#dog-image').insertAdjacentHTML('beforeend', `<img src="${dogImage.message}">`)
+  });
+
+}
+
+document.querySelector('#get-dog-image').addEventListener('click', getDogPicture)
